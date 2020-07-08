@@ -1,6 +1,6 @@
 package com.company;
 
-public class FileSaveException extends StaffException{
+public class FileSaveException extends FileException{
     public FileSaveException(String msg) {
         super(msg);
     }

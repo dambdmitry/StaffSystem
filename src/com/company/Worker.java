@@ -9,11 +9,18 @@ public class Worker {
         this.name = name;
     }
 
+    public Worker(){}
+
     public int getId(){
         return id;
     }
 
     public String genName(){
         return name;
+    }
+
+    @Override
+    public String toString(){
+        return id + " " + name;
     }
 }

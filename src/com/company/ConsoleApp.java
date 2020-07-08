@@ -1,13 +1,10 @@
 package com.company;
 
-import org.w3c.dom.ls.LSOutput;
-
-import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 public class ConsoleApp {
     private Staff staff = new Staff();
-    private int freeId = 1; //Свободный номер.
     
     public void consoleRun(){
         Scanner in = new Scanner(System.in);
@@ -54,7 +51,7 @@ public class ConsoleApp {
     }
 
     
-    //Добавление сотрудника. Рекурсия для того чтобы были уникальные номера.
+    //Добавление сотрудника.
     private void addWorker(String[] args){
         int amountOfArgs = 3; //Колличество аргументов, необходимых для добавления сотрудников.
         if(args.length - 1 == amountOfArgs){
@@ -63,14 +60,8 @@ public class ConsoleApp {
                 name += args[i] + " ";
             }
             name = name.trim();
-            try {
-                staff.add(name, freeId);
-                System.out.println(freeId);
-                freeId++;
-            } catch (StaffException e) {
-                freeId++;
-                addWorker(args);
-            }
+            staff.add(name);
+            System.out.println(staff.getLastId());
         }else{
             System.out.println("Не верный аргумент");
         }
@@ -83,13 +74,18 @@ public class ConsoleApp {
             int id;
             try {
                 id = Integer.parseInt(args[1]);
-                staff.remove(id);
-                System.out.println("Сотрудник удален");
             } catch (NumberFormatException e){
                 System.out.println("Не верный аргумент табельного номера");
-            } catch (StaffException e) {
-                System.out.println(e.getMessage());
+                return;
             }
+
+            if((staff.hasId(id))){
+                staff.remove(id);
+                System.out.println("Сотрудник успешно удален");
+            }else {
+                System.out.println("Сотрудника с таким номером нет");
+            }
+
         }else{
             System.out.println("Не верный аргумент");
         }
@@ -97,57 +93,98 @@ public class ConsoleApp {
 
 
     private void printAll(){
-        Map<Integer, Worker> allWorkers = staff.getStaff();
-        for(int id: allWorkers.keySet()){
-            String name = allWorkers.get(id).genName();
-            System.out.println(id + " " + name);
+        Set<Worker> allWorker = staff.getAllWorker();
+        for(Worker worker: allWorker){
+            System.out.println(worker.toString());
         }
     }
 
 
     private void print(int id){
-        Map<Integer, Worker> allWorkers = staff.getStaff();
-        if(allWorkers.containsKey(id)) {
-            String name = allWorkers.get(id).genName();
-            System.out.println(id + " " + name);
+        if(staff.hasId(id)){
+            Worker worker = staff.getWorker(id);
+            System.out.println(worker.toString());
         }else{
             System.out.println("Сотрудника с таким номером нет");
         }
     }
 
 
+    private DataFile formatGeneration(String format){
+        return switch (format) {
+            case "txt" -> new TxtDataFile();
+            case "xml" -> new XmlDataFile();
+            case "json" -> new JsonDataFile();
+            default -> null;
+        };
+    }
+
+
     private void save(String[] args){
         String path = "";
-        if(args.length > 1){
-            for(int i = 1; i <= args.length - 1; i++){
-                path += args[i];
-            }
-            try {
-                staff.save(path);
-                System.out.println("Данные успешно сохранены в файл");
-            } catch (StaffException e) {
-                System.out.println(e.getMessage());
+        DataFile file = formatGeneration(args[args.length - 1]);
+
+        //Если расширение не задано, то по умолчанию сохраняем в txt
+        if(file == null){
+            if(args.length > 1){
+                for(int i = 1; i <= args.length - 2; i++){
+                    path += args[i];
+                }
+                try {
+                    staff.save(path, new TxtDataFile());
+                    System.out.println("Данные успешно сохранены в файл");
+                } catch (FileException e) {
+                    System.out.println(e.getMessage());
+                }
+            }else{
+                System.out.println("Укажите путь к файлу");
             }
         }else{
-            System.out.println("Укажите путь к файлу");
+            if(args.length > 2){
+                for(int i = 1; i <= args.length - 2; i++){
+                    path += args[i];
+                }
+                try {
+                    staff.save(path, file);
+                    System.out.println("Данные успешно сохранены в файл");
+                } catch (FileException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
         }
     }
 
 
     private void load(String[] args){
+        DataFile file = formatGeneration(args[args.length - 1]);
         String path = "";
-        if(args.length > 1){
-            for(int i = 1; i <= args.length - 1; i++){
-                path += args[i];
-            }
-            try {
-                staff.load(path);
-                System.out.println("Данные успешно загружены из файла");
-            } catch (StaffException e) {
-                System.out.println(e.getMessage());
+
+        if(file == null){
+            if(args.length > 1){
+                for(int i = 1; i <= args.length - 1; i++){
+                    path += args[i];
+                }
+                try {
+                    staff.load(path, new TxtDataFile());
+                    System.out.println("Данные успешно загружены из файла");
+                } catch (FileException e) {
+                    System.out.println(e.getMessage());
+                }
+            }else{
+                System.out.println("Укажите путь к файлу");
             }
         }else{
-            System.out.println("Укажите путь к файлу");
+            if(args.length > 2){
+                for(int i = 1; i <= args.length - 2; i++){
+                    path += args[i];
+                }
+                try {
+                    staff.load(path, file);
+                    System.out.println("Данные успешно загружены");
+                } catch (FileException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
         }
     }
 }
