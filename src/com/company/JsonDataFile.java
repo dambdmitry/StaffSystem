@@ -11,7 +11,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class JsonDataFile extends DataFile {
+public class JsonDataFile implements DataFile {
 
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 

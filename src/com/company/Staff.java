@@ -14,28 +14,20 @@ public class Staff {
 
 
     //Генерация номера для нового сотрудника.
-    private void idGeneration(){
+    private int getFreeId(){
         while(staff.containsKey(freeId)){
             freeId++;
         }
-    }
-
-
-    public int getLastId(){
-        return freeId - 1;
+        return freeId;
     }
 
 
     //Добавить сотрудника в состав.
-    public void add(String name){
-        idGeneration();
-        Worker worker = new Worker(freeId, name);
-        staff.put(freeId, worker);
-        freeId++;
+    public int add(String name){
+        Worker worker = new Worker(getFreeId(), name);
+        staff.put(worker.getId(), worker);
+        return worker.getId();
     }
-
-
-
 
 
     //Удалить сотрудника с данным id.
@@ -65,27 +57,11 @@ public class Staff {
         return allWorker;
     }
 
-    public Map<Integer, Worker> getStaff(){
-        return staff;
-    }
-
 
     //Сохранить данные o сотрудниках в файл.
     public void save(String path, DataFile file) throws FileException {
         file.saveToFile(path, getAllWorker());
-//        try(FileWriter writer = new FileWriter(path, true)){
-//            for(int key: staff.keySet()){
-//                Worker worker = staff.get(key);
-//                String text = key + " " + worker.genName() + "\n";
-//                writer.write(text);
-//            }
-//            writer.flush();
-//        } catch (IOException e) {
-//            throw new FileSaveException("Ошибка сохранения в файл");
-//        }
     }
-
-
 
 
     //Загрузка сотрудников из файла.
@@ -96,13 +72,5 @@ public class Staff {
                 staff.put(worker.getId(), worker);
             }
         }
-//        try(Scanner reader = new Scanner(new File(path))){
-//            while(reader.hasNextLine()){
-//                String text = reader.nextLine();
-//                addFromFile(text);
-//            }
-//        }catch (FileNotFoundException e){
-//            throw new FileLoadException("Ошибка открытия файла");
-//        }
     }
 }

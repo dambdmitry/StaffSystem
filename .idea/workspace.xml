@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5963075b-c86d-4615-9d80-e023ec942a9d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/StaffSystem/com/company/ConsoleApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/StaffSystem/com/company/FIle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/StaffSystem/com/company/FileException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/StaffSystem/com/company/FileJson$StaffJSON.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/StaffSystem/com/company/FileJson.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/StaffSystem/com/company/FileLoadException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/StaffSystem/com/company/FileManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/StaffSystem/com/company/FileSaveException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/StaffSystem/com/company/FileTxt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/StaffSystem/com/company/FileXml.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/StaffSystem/com/company/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/StaffSystem/com/company/NotFoundWorkerException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/StaffSystem/com/company/Staff.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/StaffSystem/com/company/StaffException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/StaffSystem/com/company/Worker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/ConsoleApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ConsoleApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/DataFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/DataFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/JsonDataFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/JsonDataFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Staff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/TxtDataFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/TxtDataFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/XmlDataFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/XmlDataFile.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1e1yyoR64KfWcpTWGvwXkCdsjri" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="true" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../test/test.json" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="StaffSystem" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5963075b-c86d-4615-9d80-e023ec942a9d" name="Default Changelist" comment="" />
+      <created>1593503650345</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1593503650345</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="488" y="90" key="#com.intellij.ide.util.MemberChooser" timestamp="1593963673673">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="488" y="90" key="#com.intellij.ide.util.MemberChooser/0.0.1366.768@0.0.1366.768" timestamp="1593963673673" />
+    <state x="413" y="130" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1593854507016">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="413" y="130" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.768@0.0.1366.768" timestamp="1593854507016" />
+    <state x="389" y="125" key="FileChooserDialogImpl" timestamp="1594215313438">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="389" y="125" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1594215313438" />
+    <state width="1323" height="146" key="GridCell.Tab.0.bottom" timestamp="1594289386930">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="146" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1594289386930" />
+    <state width="1323" height="146" key="GridCell.Tab.0.center" timestamp="1594289386929">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="146" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1594289386929" />
+    <state width="1323" height="146" key="GridCell.Tab.0.left" timestamp="1594289386929">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="146" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1594289386929" />
+    <state width="1323" height="146" key="GridCell.Tab.0.right" timestamp="1594289386929">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="146" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1594289386929" />
+    <state x="163" y="0" key="SettingsEditor" timestamp="1594214245403">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1594214245403" />
+    <state x="387" y="275" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1594214224964">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="387" y="275" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1366.768@0.0.1366.768" timestamp="1594214224964" />
+  </component>
+</project>

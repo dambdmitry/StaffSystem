@@ -5,6 +5,8 @@ import java.util.Set;
 
 public class ConsoleApp {
     private Staff staff = new Staff();
+    private static final int REQUIRED_NUMBER_OF_ARGS_TO_ADD = 3;
+    private static final int REQUIRED_NUMBER_OF_ARGS_TO_REMOVE = 1;
     
     public void consoleRun(){
         Scanner in = new Scanner(System.in);
@@ -53,15 +55,15 @@ public class ConsoleApp {
     
     //Добавление сотрудника.
     private void addWorker(String[] args){
-        int amountOfArgs = 3; //Колличество аргументов, необходимых для добавления сотрудников.
-        if(args.length - 1 == amountOfArgs){
+        if(args.length - 1 == REQUIRED_NUMBER_OF_ARGS_TO_ADD){
             String name = "";
+            int id;
             for(int i = 1; i <= 3; i++){
                 name += args[i] + " ";
             }
             name = name.trim();
-            staff.add(name);
-            System.out.println(staff.getLastId());
+            id = staff.add(name);
+            System.out.println(id);
         }else{
             System.out.println("Не верный аргумент");
         }
@@ -69,8 +71,7 @@ public class ConsoleApp {
 
 
     private void removeWorker(String[] args){
-        int amountOfArgs = 1;
-        if(args.length - 1 == amountOfArgs){
+        if(args.length - 1 == REQUIRED_NUMBER_OF_ARGS_TO_REMOVE){
             int id;
             try {
                 id = Integer.parseInt(args[1]);
@@ -110,7 +111,7 @@ public class ConsoleApp {
     }
 
 
-    private DataFile formatGeneration(String format){
+    private DataFile getDataFileByFormat(String format){
         return switch (format) {
             case "txt" -> new TxtDataFile();
             case "xml" -> new XmlDataFile();
@@ -122,7 +123,7 @@ public class ConsoleApp {
 
     private void save(String[] args){
         String path = "";
-        DataFile file = formatGeneration(args[args.length - 1]);
+        DataFile file = getDataFileByFormat(args[args.length - 1]);
 
         //Если расширение не задано, то по умолчанию сохраняем в txt
         if(file == null){
@@ -156,7 +157,7 @@ public class ConsoleApp {
 
 
     private void load(String[] args){
-        DataFile file = formatGeneration(args[args.length - 1]);
+        DataFile file = getDataFileByFormat(args[args.length - 1]);
         String path = "";
 
         if(file == null){

@@ -8,7 +8,7 @@ import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-public class TxtDataFile extends DataFile {
+public class TxtDataFile implements DataFile {
 
 
     @Override

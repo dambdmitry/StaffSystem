@@ -17,22 +17,22 @@ import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class XmlDataFile extends DataFile {
+public class XmlDataFile implements DataFile {
     private DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     private DocumentBuilder documentBuilder;
 
 
     //Имена всех тегов xml-файлов.
-    private final String ROOT_ELEMENT = "Staff";
-    private final String WORKER_ELEMENT = "worker";
-    private final String WORKER_ID = "id";
-    private final String WORKER_NAME = "name";
+    private static final String ROOT_ELEMENT = "Staff";
+    private static final String WORKER_ELEMENT = "worker";
+    private static final String WORKER_ID = "id";
+    private static final String WORKER_NAME = "name";
 
-    private final String WORKER_ATTRIBUTE = "id";
+    private static final String WORKER_ATTRIBUTE = "id";
 
 
     //Создание тегов для тега "worker".
-    private Node newWorkerNode(Document doc, String name, String value){
+    private Node createWorkerNodeForXml(Document doc, String name, String value){
         Element node = doc.createElement(name);
         node.appendChild(doc.createTextNode(value));
         return node;
@@ -40,12 +40,12 @@ public class XmlDataFile extends DataFile {
 
 
     //Создание объекта работника в xml.
-    private Node newWorker(Document doc, String id, String name){
+    private Node createWorkerForXml(Document doc, String id, String name){
         Element worker = doc.createElement(WORKER_ELEMENT);
         worker.setAttribute(WORKER_ATTRIBUTE, id);
 
-        worker.appendChild(newWorkerNode(doc, WORKER_ID, id));
-        worker.appendChild(newWorkerNode(doc, WORKER_NAME, name));
+        worker.appendChild(createWorkerNodeForXml(doc, WORKER_ID, id));
+        worker.appendChild(createWorkerNodeForXml(doc, WORKER_NAME, name));
 
         return worker;
     }
@@ -63,7 +63,7 @@ public class XmlDataFile extends DataFile {
             for(Worker worker: allWorker){
                 String id = Integer.toString(worker.getId());
                 String name = worker.genName();
-                rootElement.appendChild(newWorker(doc, id, name));
+                rootElement.appendChild(createWorkerForXml(doc, id, name));
             }
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
