@@ -52,9 +52,7 @@ public class Staff {
 
     //Возвращает всех работников.
     public Set<Worker> getAllWorker(){
-        Set<Worker> allWorker = new LinkedHashSet<Worker>();
-        allWorker.addAll(staff.values());
-        return allWorker;
+        return new LinkedHashSet<Worker>(staff.values());
     }
 
 

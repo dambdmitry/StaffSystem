@@ -15,12 +15,18 @@ public class Worker {
         return id;
     }
 
-    public String genName(){
+    public String getName(){
         return name;
     }
 
     @Override
     public String toString(){
         return id + " " + name;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+       Worker worker = (Worker) obj;
+       return this.id == worker.getId() && this.name.equals(worker.getName());
     }
 }

@@ -62,7 +62,7 @@ public class XmlDataFile implements DataFile {
 
             for(Worker worker: allWorker){
                 String id = Integer.toString(worker.getId());
-                String name = worker.genName();
+                String name = worker.getName();
                 rootElement.appendChild(createWorkerForXml(doc, id, name));
             }
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
