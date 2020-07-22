@@ -6,7 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.LinkedHashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -15,6 +17,8 @@ public class JsonDataFileTest {
     JsonDataFile file = new JsonDataFile();
     String path = System.getProperty("user.dir") + "/src/unit/resources/TestJSON";
     String testFileName = "/test.json";
+    Scanner sampleReader;
+    Scanner reader;
 
     @After
     public void tearDown() throws Exception {
@@ -30,12 +34,21 @@ public class JsonDataFileTest {
         workers.add(new Worker(2, "Рыжов Игорь Дмитриевич"));
         workers.add(new Worker(3, "Селяков Николай Викторович"));
 
-        try {
+        try{
             file.saveToFile(path + testFileName, workers);
-            Set<Worker> expectedWorkers = file.loadFormFile(path + "/fileToSave.json");
-            Set<Worker> savedWorkers = file.loadFormFile(path + testFileName);
-        } catch (FileSaveException | FileLoadException e) {
+
+            sampleReader = new Scanner(new File(path + "/fileToSave.json"));
+            reader = new Scanner(new File(path + testFileName));
+
+            while(reader.hasNextLine() && sampleReader.hasNextLine()){
+                assertEquals(sampleReader.nextLine(), reader.nextLine());
+            }
+            assertFalse(reader.hasNextLine() || sampleReader.hasNextLine());
+        } catch (FileNotFoundException | FileSaveException e) {
             fail();
+        } finally {
+            sampleReader.close();
+            reader.close();
         }
     }
 
@@ -46,7 +59,7 @@ public class JsonDataFileTest {
                 new Worker(3, "Озеров Дмитрий Андреевич")};
         try {
             Set<Worker> workers = file.loadFormFile(path + "/fileToLoad.json");
-            assertEquals(expectedWorkers, workers.toArray());
+            assertArrayEquals(expectedWorkers, workers.toArray());
         } catch (FileException e) {
             fail();
         }

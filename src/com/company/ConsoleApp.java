@@ -1,18 +1,32 @@
 package com.company;
 
+import java.io.*;
 import java.util.Scanner;
 import java.util.Set;
 
 public class ConsoleApp {
     private Staff staff = new Staff();
+    private InputStream inputStream = System.in;
+    private PrintStream outputStream = System.out;
     private static final int REQUIRED_NUMBER_OF_ARGS_TO_ADD = 3;
     private static final int REQUIRED_NUMBER_OF_ARGS_TO_REMOVE = 1;
+
+
+    public void setInputStream(InputStream inputStream){
+        this.inputStream = inputStream;
+    }
     
+    
+    public void setOutputStream(PrintStream outputStream){
+        this.outputStream = outputStream;
+    }
+
+
     public void consoleRun(){
-        Scanner in = new Scanner(System.in);
+        Scanner in = new Scanner(inputStream);
         String command = "";
         while(!command.equals("exit")){
-            System.out.print("Введите комманду: ");
+            outputStream.print("Введите команду: ");
             String[] commandAndArguments = in.nextLine().split(" ");
             command = commandAndArguments[0];
             switch (command){
@@ -31,10 +45,10 @@ public class ConsoleApp {
                             id = Integer.parseInt(commandAndArguments[1]);
                             print(id);
                         }catch (NumberFormatException e){
-                            System.out.println("Не верный аргумент");
+                            outputStream.println("Не верный аргумент");
                         }
                     }else{
-                        System.out.println("Не верно введен аргумент");
+                        outputStream.println("Не верно введен аргумент");
                     }
                     break;
                 case "save":
@@ -46,7 +60,7 @@ public class ConsoleApp {
                 case "exit":
                     break;
                 default:
-                    System.out.println("Не верно введена команда");
+                    outputStream.println("Не верно введена команда");
                     break;
             }
         }
@@ -63,9 +77,9 @@ public class ConsoleApp {
             }
             name = name.trim();
             id = staff.add(name);
-            System.out.println(id);
+            outputStream.println(id);
         }else{
-            System.out.println("Не верный аргумент");
+            outputStream.println("Не верный аргумент");
         }
     }
 
@@ -76,19 +90,19 @@ public class ConsoleApp {
             try {
                 id = Integer.parseInt(args[1]);
             } catch (NumberFormatException e){
-                System.out.println("Не верный аргумент табельного номера");
+                outputStream.println("Не верный аргумент табельного номера");
                 return;
             }
 
             if((staff.hasId(id))){
                 staff.remove(id);
-                System.out.println("Сотрудник успешно удален");
+                outputStream.println("Сотрудник успешно удален");
             }else {
-                System.out.println("Сотрудника с таким номером нет");
+                outputStream.println("Сотрудника с таким номером нет");
             }
 
         }else{
-            System.out.println("Не верный аргумент");
+            outputStream.println("Не верный аргумент");
         }
     }
 
@@ -96,7 +110,7 @@ public class ConsoleApp {
     private void printAll(){
         Set<Worker> allWorker = staff.getAllWorker();
         for(Worker worker: allWorker){
-            System.out.println(worker.toString());
+            outputStream.println(worker.toString());
         }
     }
 
@@ -104,9 +118,9 @@ public class ConsoleApp {
     private void print(int id){
         if(staff.hasId(id)){
             Worker worker = staff.getWorker(id);
-            System.out.println(worker.toString());
+            outputStream.println(worker.toString());
         }else{
-            System.out.println("Сотрудника с таким номером нет");
+            outputStream.println("Сотрудника с таким номером нет");
         }
     }
 
@@ -133,12 +147,12 @@ public class ConsoleApp {
                 }
                 try {
                     staff.save(path, new TxtDataFile());
-                    System.out.println("Данные успешно сохранены в файл");
+                    outputStream.println("Данные успешно сохранены в файл");
                 } catch (FileException e) {
-                    System.out.println(e.getMessage());
+                    outputStream.println(e.getMessage());
                 }
             }else{
-                System.out.println("Укажите путь к файлу");
+                outputStream.println("Укажите путь к файлу");
             }
         }else{
             if(args.length > 2){
@@ -147,9 +161,9 @@ public class ConsoleApp {
                 }
                 try {
                     staff.save(path, file);
-                    System.out.println("Данные успешно сохранены в файл");
+                    outputStream.println("Данные успешно сохранены в файл");
                 } catch (FileException e) {
-                    System.out.println(e.getMessage());
+                    outputStream.println(e.getMessage());
                 }
             }
         }
@@ -167,12 +181,12 @@ public class ConsoleApp {
                 }
                 try {
                     staff.load(path, new TxtDataFile());
-                    System.out.println("Данные успешно загружены из файла");
+                    outputStream.println("Данные успешно загружены из файла");
                 } catch (FileException e) {
-                    System.out.println(e.getMessage());
+                    outputStream.println(e.getMessage());
                 }
             }else{
-                System.out.println("Укажите путь к файлу");
+                outputStream.println("Укажите путь к файлу");
             }
         }else{
             if(args.length > 2){
@@ -181,9 +195,9 @@ public class ConsoleApp {
                 }
                 try {
                     staff.load(path, file);
-                    System.out.println("Данные успешно загружены");
+                    outputStream.println("Данные успешно загружены");
                 } catch (FileException e) {
-                    System.out.println(e.getMessage());
+                    outputStream.println(e.getMessage());
                 }
             }
         }

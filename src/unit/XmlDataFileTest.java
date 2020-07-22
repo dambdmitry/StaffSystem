@@ -6,7 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.LinkedHashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -15,6 +17,8 @@ public class XmlDataFileTest {
     XmlDataFile file = new XmlDataFile();
     String path = System.getProperty("user.dir") + "/src/unit/resources/TestXML";
     String testFileName = "/test.xml";
+    Scanner sampleReader;
+    Scanner reader;
 
 
 
@@ -32,12 +36,21 @@ public class XmlDataFileTest {
         workers.add(new Worker(2, "Задворная Ольга Николаевна"));
         workers.add(new Worker(3, "Пучков Данил Евгеньевич"));
 
-        try {
+        try{
             file.saveToFile(path + testFileName, workers);
-            Set<Worker> expectedWorkers = file.loadFormFile(path + "/fileToSave.xml");
-            Set<Worker> savedWorkers = file.loadFormFile(path + testFileName);
-        } catch (FileSaveException | FileLoadException e) {
+
+            sampleReader = new Scanner(new File(path + "/fileToSave.xml"));
+            reader = new Scanner(new File(path + testFileName));
+
+            while(reader.hasNextLine() && sampleReader.hasNextLine()){
+                assertEquals(sampleReader.nextLine(), reader.nextLine());
+            }
+            assertFalse(reader.hasNextLine() || sampleReader.hasNextLine());
+        } catch (FileNotFoundException | FileSaveException e) {
             fail();
+        } finally {
+            sampleReader.close();
+            reader.close();
         }
     }
 
@@ -48,7 +61,7 @@ public class XmlDataFileTest {
                 new Worker(3, "Озеров Дмитрий Андреевич")};
         try {
             Set<Worker> workers = file.loadFormFile(path + "/fileToLoad.xml");
-            assertEquals(expectedWorkers, workers.toArray());
+            assertArrayEquals(expectedWorkers, workers.toArray());
         } catch (FileException e) {
             fail();
         }

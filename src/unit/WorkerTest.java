@@ -7,16 +7,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class WorkerTest {
-    Worker worker;
-    int id;
-    String name;
+    int id = 1;
+    String name = "worker";
+    Worker worker = new Worker(id, name);
 
-    @Before
-    public void setUp() throws Exception {
-        id = 1;
-        name = "worker";
-        worker = new Worker(id, name);
-    }
 
     @Test
     public void testToString() {
@@ -26,7 +20,19 @@ public class WorkerTest {
 
     @Test
     public void testEquals() {
-        Worker newWorker = new Worker(id, name);
-        assertEquals(newWorker, worker);
+        Worker trueWorker = new Worker(id, name);
+        Worker falseWorker = new Worker(-1, "");
+        assertEquals(worker, trueWorker);
+        assertNotEquals(worker, falseWorker);
+        assertNotEquals(worker, null);
     }
+
+    @Test
+    public void testHashCode(){
+        Worker trueWorker = new Worker(id, name);
+        Worker falseWorker = new Worker(-1, "");
+        assertEquals(trueWorker.hashCode(), worker.hashCode());
+        assertNotEquals(worker.hashCode(), falseWorker.hashCode());
+    }
+
 }
