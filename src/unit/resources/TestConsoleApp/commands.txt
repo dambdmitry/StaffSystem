@@ -14,15 +14,15 @@ print
 remove 1
 remove 3
 print
-load C:\Users\Admin\Desktop\PROJECT\StaffSystem\src\unit\resources\TestConsoleApp\txt1.txt
+load ./src/unit/resources/TestConsoleApp/txt1.txt
 print
-load C:\Users\Admin\Desktop\PROJECT\StaffSystem\src\unit\resources\TestConsoleApp\json2.json json
+load ./src/unit/resources/TestConsoleApp/json2.json json
 print
-load C:\Users\Admin\Desktop\PROJECT\StaffSystem\src\unit\resources\TestConsoleApp\xml3.xml xml
+load ./src/unit/resources/TestConsoleApp/xml3.xml xml
 print
-save C:\Users\Admin\Desktop\PROJECT\StaffSystem\src\unit\resources\TestConsoleApp\actualTxt.txt txt
-save C:\Users\Admin\Desktop\PROJECT\StaffSystem\src\unit\resources\TestConsoleApp\actualJson.json json
-save C:\Users\Admin\Desktop\PROJECT\StaffSystem\src\unit\resources\TestConsoleApp\actualXml.xml xml
+save ./src/unit/resources/TestConsoleApp/actualTxt.txt txt
+save ./src/unit/resources/TestConsoleApp/actualJson.json json
+save ./src/unit/resources/TestConsoleApp/actualXml.xml xml
 remove qwe
 add
 add больше трех слов нельзя
